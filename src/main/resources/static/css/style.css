@@ -1,0 +1,254 @@
+/* Reset and base styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: #0f1115;
+        color: #f5f5f5;
+        font-family: Arial, sans-serif;
+        text-align: center;
+}
+
+.range-box {
+    display: block;
+    max-width: 500px;
+    margin: 25px auto;
+    padding: 20px;
+    background-color: #252b36;
+    color: #ffffff;
+    border: 1px solid #46505e;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.range-box p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.day-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.day-message img {
+    display: block;
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.day-message p {
+    margin: 0;
+}
+
+p {
+    margin: 0 0 15px;
+    color: #c7cbd1;
+    line-height: 1.6;
+}
+
+
+/* Main page container */
+.container {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* Header */
+.site-header {
+    padding: 20px 0;
+    background: #151820;
+    border-bottom: 1px solid #2d333d;
+}
+
+.site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.site-title {
+    margin: 0;
+    color: #ffffff;
+    font-size: 28px;
+}
+
+/* Navigation */
+nav a {
+    margin-left: 20px;
+    color: #b8c1cc;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: #66b3ff;
+}
+
+/* Headings and text */
+h1,
+h2,
+h3 {
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+p {
+    color: #c7cbd1;
+}
+
+/* Cards or content sections */
+.card {
+    margin: 25px 0;
+    padding: 25px;
+    background: #181c24;
+    border: 1px solid #2d333d;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Table */
+.nice-table {
+    width: 100%;
+    margin: 30px 0;
+    border-collapse: collapse;
+    overflow: hidden;
+    background: #181c24;
+    border: 1px solid #303642;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+.nice-table th {
+    padding: 16px 20px;
+    background: #252b36;
+    color: #ffffff;
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 2px solid #3d4654;
+}
+
+.nice-table td {
+    padding: 15px 20px;
+    color: #e5e7eb;
+    border-bottom: 1px solid #303642;
+}
+
+.nice-table tbody tr:nth-child(even) {
+    background: #1e232c;
+}
+
+.nice-table tbody tr:hover {
+    background: #293342;
+    transition: background 0.2s ease;
+}
+
+.nice-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Driving license column */
+.nice-table td:last-child {
+    color: #7ee787;
+    font-weight: bold;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    padding: 11px 18px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* Forms */
+form {
+    max-width: 600px;
+}
+
+label {
+    display: block;
+    margin: 15px 0 6px;
+    color: #e5e7eb;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    background: #11141a;
+    color: #ffffff;
+    border: 1px solid #3d4654;
+    border-radius: 7px;
+    font: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #66b3ff;
+    box-shadow: 0 0 0 3px rgba(102, 179, 255, 0.15);
+}
+
+/* Footer */
+.site-footer {
+    margin-top: 50px;
+    padding: 25px 0;
+    background: #151820;
+    border-top: 1px solid #2d333d;
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0;
+    color: #8b949e;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    .site-header .container {
+        display: block;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 12px 15px 0 0;
+    }
+
+    .nice-table {
+        font-size: 14px;
+    }
+
+    .nice-table th,
+    .nice-table td {
+        padding: 12px 10px;
+    }
+
+    .container {
+        padding: 25px 0;
+    }
+}

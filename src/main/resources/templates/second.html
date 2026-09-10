@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${second}"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<H1>Second right now:</H1>
+<p th:text="${second}"></p>
+
+
+<p>Test range 0-59s:</p>
+<p>Using range conditions:</p>
+
+<div class="range-box">
+    <p th:if="${second >= 0 && second < 10}">
+        0-9 range
+    </p>
+
+    <p th:if="${second >= 10 && second < 20}">
+        10-19 range
+    </p>
+
+    <p th:if="${second >= 20 && second < 30}">
+        20-29 range
+    </p>
+
+    <p th:if="${second >= 30 && second < 40}">
+        30-39 range
+    </p>
+
+    <p th:if="${second >= 40 && second < 50}">
+        40-49 range
+    </p>
+
+    <p th:if="${second >= 50 && second < 60}">
+        50-59 range
+    </p>
+
+    <p th:unless="${second >= 0 && second < 60}">
+        Uden for range 0-59 sekunder
+    </p>
+</div>
+</body>
+</html>
