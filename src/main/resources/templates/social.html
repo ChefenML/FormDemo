@@ -10,7 +10,7 @@
 
 <h1>Social Shit posting</h1>
 
-<form action="/social" th:action="@{/social}" method="post" th:object="${messageModel}">
+<form action="/social" th:action="@{/socialpost}" method="post" th:object="${messageModel}">
 
     <div class="range-box">
     <input type="text" id="name" th:field="*{name}" placeholder="Name">

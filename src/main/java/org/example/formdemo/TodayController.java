@@ -24,21 +24,17 @@ public class TodayController {
 
 
 
-    @PostMapping("/social")
-    public String socialPost(
+    @PostMapping("/socialpost")
+    public String socialPost(Model model,
             @ModelAttribute("messageModel") messageModel messageModel) {
-
+        model.addAttribute("messageModel", messageModel);
+        messageModel.setPrivpub("Private");
         System.out.println(
                 "UserName: " + messageModel.getName()
                         + " has posted: " + messageModel.getMessage()
                         + " Private: " + messageModel.isPrivpub()
         );
 
-        return "redirect:/socialpost";
-    }
-
-    @GetMapping("/socialpost")
-    public String socialCreatedSuccess() {
-        return "socialpost"; // socialpost.html
+        return "socialpost";
     }
 }
