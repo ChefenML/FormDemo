@@ -18,17 +18,27 @@ public class TodayController {
     @GetMapping({"/social"})
     public String today(Model model) {
         model.addAttribute("today", LocalDate.now());
+        model.addAttribute("messageModel", new messageModel());
         return "social";
     }
 
-    @PostMapping({"/social/post"})
-    @ResponseBody
-    public String socialPost(Model model, @ModelAttribute("messageModel") messageModel messageModel) {
-        messageModel mm = new messageModel();
-        model.addAttribute("messagemodel", mm);
-        PrintStream var10000 = System.out;
-        String var10001 = mm.getName();
-        var10000.println("UserName: " + var10001 + " has posted: " + mm.getMessage() + " Private: " + mm.isPrivpub());
+
+
+    @PostMapping("/social")
+    public String socialPost(
+            @ModelAttribute("messageModel") messageModel messageModel) {
+
+        System.out.println(
+                "UserName: " + messageModel.getName()
+                        + " has posted: " + messageModel.getMessage()
+                        + " Private: " + messageModel.isPrivpub()
+        );
+
         return "redirect:/socialpost";
+    }
+
+    @GetMapping("/socialpost")
+    public String socialCreatedSuccess() {
+        return "socialpost"; // socialpost.html
     }
 }

@@ -10,7 +10,8 @@
 
 <h1>Social Shit posting</h1>
 
-<form action="/social/post}" th:action="@{/social/post}" method="POST" th:object="${messageModel}">
+<form action="/social" th:action="@{/social}" method="post" th:object="${messageModel}">
+
     <div class="range-box">
     <input type="text" id="name" th:field="*{name}" placeholder="Name">
     <label for="name">User Name</label>
@@ -19,8 +20,8 @@
     </textarea>
     <br>
 
-    <label for="privpub">Private/Public</label>
-    <input th:field="*{privpub}" type="checkbox" id="privpub" name="privpub" value="privpub" checked>
+<!--    <label for="privpub">Private/Public</label>-->
+<!--    <input th:field="*{privpub}" type="text" id="privpub" name="privpub">-->
 
     <button type="submit">Submit your shit</button>
     </div>

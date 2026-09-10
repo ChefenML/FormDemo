@@ -8,11 +8,12 @@
 <body>
 <div class="range-box">
 <p>Username:</p>
-<p th:text="${modelmessage.name}"></p>
+<p th:text="${messageModel.name}"></p>
 <p>Posted:</p>
-<p th:text="${modelmessage.message}"></p>
+<p th:text="${messageModel.message}"></p>
 <p>Private/public:</p>
-<p th:text="${modelmessage.privpub}"></p>
+<p th:text="${messageModel.privpub}"></p>
+    <p th:text="${today}"></p>
 </div>
 </body>
 </html>

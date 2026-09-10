@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Time to yell on the internet</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<h1>Social Shit posting</h1>
+
+<!--<form action="/social/post" th:action="@{/social/post}" method="post" th:object="${messageModel}">-->
+
+    <div class="range-box">
+        <form action="/social" method="post">
+            <label for="name">ShitPoster:</label><br>
+            <input type="text" id="name" name="name" value="John"><br><br>
+
+            <label for="message">Shit Posting goes here:</label><br>
+            <textarea id="message" name="message" rows="5" cols="25" placeholder="dumb shit"> </textarea>
+
+            <br>
+
+        <label for="privpub">Private/Public</label>
+        <input type="checkbox" id="privpub" name="privpub" value="Private" checked>
+
+            <input type="submit" value="Submit your shit">
+        </form>
+    </div>
+
+<p th:text="${today}"></p>
+</body>
+</html>

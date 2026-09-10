@@ -3,9 +3,10 @@ package org.example.formdemo;
 public class messageModel {
     private String name;
     private String message;
-    private boolean privpub;
+    private String privpub;
 
     public messageModel() {
+
     }
 
     public String getName() {
@@ -24,11 +25,11 @@ public class messageModel {
         this.message = message;
     }
 
-    public boolean isPrivpub() {
+    public String isPrivpub() {
         return this.privpub;
     }
 
-    public void setPrivpub(boolean privpub) {
+    public void setPrivpub(String privpub) {
         this.privpub = privpub;
     }
 }
