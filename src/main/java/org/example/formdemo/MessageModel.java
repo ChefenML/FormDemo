@@ -9,6 +9,7 @@ public class MessageModel {
     private LocalDate date;
 
     public MessageModel() {
+        this.date = LocalDate.now();
     }
 
     public MessageModel(String name, String message, String privpub, LocalDate date){
@@ -34,11 +35,19 @@ public class MessageModel {
         this.message = message;
     }
 
-    public String isPrivpub() {
-        return this.privpub;
+    public String getPrivpub() {
+        return privpub;
     }
 
     public void setPrivpub(String privpub) {
         this.privpub = privpub;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

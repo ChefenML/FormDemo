@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class TodayController {
@@ -22,17 +23,21 @@ public class TodayController {
 
 
 
-    @PostMapping("/socialpost")
-    public String socialPost(Model model,
-            @ModelAttribute("messageModel") MessageModel messageModel) {
-        model.addAttribute("messageModel", messageModel);
+    @PostMapping("/social")
+    public String socialPost(RedirectAttributes redirectAttributes,
+                             @ModelAttribute("messageModel") MessageModel messageModel) {
+        redirectAttributes.addFlashAttribute("messageModel", messageModel);
         messageModel.setPrivpub("Private");
         System.out.println(
                 "UserName: " + messageModel.getName()
                         + " has posted: " + messageModel.getMessage()
-                        + " Private: " + messageModel.isPrivpub()
+                        + " Private: " + messageModel.getPrivpub()
         );
 
+        return "redirect:/socialpost";
+    }
+    @GetMapping("/socialpost")
+    public String postCreated(){
         return "socialpost";
     }
 }

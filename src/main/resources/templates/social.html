@@ -10,7 +10,7 @@
 
 <h1>Social Shit posting</h1>
 
-<form action="/social" th:action="@{/socialpost}" method="post" th:object="${messageModel}">
+<form action="/social" th:action="@{/social}" method="post" th:object="${messageModel}">
 
     <div class="range-box">
     <input type="text" id="name" th:field="*{name}" placeholder="Name">
@@ -22,6 +22,16 @@
 
 <!--    <label for="privpub">Private/Public</label>-->
 <!--    <input th:field="*{privpub}" type="text" id="privpub" name="privpub">-->
+        <select th:field="*{privpub}">
+<!--            <option th:value="'M'" th:text="Male"></option>-->
+<!--            <option th:value="'F'" th:text="Female"></option>-->
+<!--        <label for="viewoptions">Choose who can see your shitposting:</label>-->
+<!--        <select th:field="*{privpub}" id="viewoptions" name="viewoptions">-->
+            <option th:value="'private'" th:text="Private"></option>
+            <option th:value="'public'" th:text="Public"></option>
+            <option th:value="'network'" th:text="Network"></option>
+        </select>
+
 
     <button type="submit">Submit your shit</button>
     </div>
