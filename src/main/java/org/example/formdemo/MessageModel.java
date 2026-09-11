@@ -1,12 +1,21 @@
 package org.example.formdemo;
 
-public class messageModel {
+import java.time.LocalDate;
+
+public class MessageModel {
     private String name;
     private String message;
     private String privpub;
+    private LocalDate date;
 
-    public messageModel() {
+    public MessageModel() {
+    }
 
+    public MessageModel(String name, String message, String privpub, LocalDate date){
+        this.name = name;
+        this.message = message;
+        this.privpub = privpub;
+        this.date = date;
     }
 
     public String getName() {
