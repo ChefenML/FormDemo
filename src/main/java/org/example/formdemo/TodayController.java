@@ -45,7 +45,7 @@ public class TodayController {
 
     @GetMapping("/viewall")
     public String viewAll(Model model){
-        model.addAttribute("msgRepo",msgRepo);
+        model.addAttribute("msgRepo",msgRepo.getAll());
         return "viewall";
     }
 }

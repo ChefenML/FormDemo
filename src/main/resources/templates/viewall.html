@@ -10,11 +10,16 @@
 <!--private String message;-->
 <!--private String privpub;-->
 <!--private LocalDate date;-->
-<div th:each="msgRepo: ${msgRepo}">
-             <h1 th:text="${msgRepo.name}"></h1>
+
+<div th:each="msgRepo: ${msgRepo}" class="range-box">
+
+    <h1 th:text="${msgRepo.name}"></h1>
+    <h6 th:text="${'Date: ' + msgRepo.date}"></h6>
         <h2 th:text="${msgRepo.message}"></h2>
-    <h3 th:text="${msgRepo.privpub}"></h3>
-    <h3 th:text="${msgRepo.date}"></h3>
+
+    <h6 th:text="${'Who can see this shit:  ' + msgRepo.privpub}"></h6>
+
+
 </div>
 </body>
 </html>

@@ -10,19 +10,23 @@
 
 <h1>Social Shit posting</h1>
 
-<form action="/social" th:action="@{/social}" method="post" th:object="${messageModel}">
+
 
     <div class="range-box">
-    <input type="text" id="name" th:field="*{name}" placeholder="Name">
-    <label for="name">User Name</label>
+        <form action="/social" th:action="@{/social}" method="post" th:object="${messageModel}">
+        <label for="name">User Name</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Name of stupid">
+
     <label for="textarea">Shit posting goes here:</label>
     <textarea th:field="*{message}" placeholder="Dumb shit goes here" id="textarea" name="textarea" rows="4" cols="50">
     </textarea>
-    <br>
 
+            <br>
+
+<label for="dropbox">Who can see your dumb shit:</label>
 <!--    <label for="privpub">Private/Public</label>-->
 <!--    <input th:field="*{privpub}" type="text" id="privpub" name="privpub">-->
-        <select th:field="*{privpub}">
+        <select th:field="*{privpub}" id="dropbox">
 <!--            <option th:value="'M'" th:text="Male"></option>-->
 <!--            <option th:value="'F'" th:text="Female"></option>-->
 <!--        <label for="viewoptions">Choose who can see your shitposting:</label>-->
@@ -31,12 +35,13 @@
             <option th:value="'public'" th:text="Public"></option>
             <option th:value="'network'" th:text="Network"></option>
         </select>
-
-
+    <br>
     <button type="submit">Submit your shit</button>
+        </form>
     </div>
-</form>
+
 <p th:text="${today}"></p>
 <a th:href="@{/viewall}">ShitPostDB</a>
+<button type="button" th:href="@{/viewall}">To the dumbDB</button>
 </body>
 </html>

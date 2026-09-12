@@ -10,6 +10,10 @@ import java.util.List;
 public class msgRepo {
     final List<MessageModel> msglist = new ArrayList<>();
 
+
+    public msgRepo(){
+        mockData();
+    }
     public List<MessageModel> getAll(){
         return msglist;
     }

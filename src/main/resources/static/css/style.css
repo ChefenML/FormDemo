@@ -175,6 +175,7 @@ p {
     cursor: pointer;
     font-size: 15px;
     transition: background 0.2s ease, transform 0.2s ease;
+    margin: 5px;
 }
 
 .button:hover {
