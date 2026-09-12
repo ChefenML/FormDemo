@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -16,7 +17,7 @@ public class msgRepo {
         mockData();
     }
     public List<MessageModel> getAll(){
-        return msglist;
+        return Collections.unmodifiableList(msglist);
     }
 
     public void save(MessageModel msg){
@@ -27,7 +28,7 @@ public class msgRepo {
     public List<MessageModel> filterList(String filter){
         List<MessageModel> filterList = new ArrayList<>();
         for(MessageModel m : msglist){
-            if(m.getName().equalsIgnoreCase(filter) || m.getMessage().equalsIgnoreCase(filter)){
+            if(m.getPrivpub().equalsIgnoreCase(filter)){
                 filterList.add(m);
             }
         }

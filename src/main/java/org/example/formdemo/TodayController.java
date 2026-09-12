@@ -56,8 +56,21 @@ public class TodayController {
         MessageModel message = msgRepo.findById(id);
 
         message.likePost();
-        //
 
         return "redirect:/viewall";
     }
+
+    @GetMapping("/messages/{filter}")
+    public String filterMessages(@PathVariable String filter, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("msgRepo", msgRepo.filterList(filter));
+
+        return "redirect:/viewall-filter";
+    }
+
+    @GetMapping("/viewall-filter")
+    public String viewallFilter(){
+        return "viewall-filter";
+    }
+
+
 }
