@@ -27,7 +27,8 @@
 
 
     <!--    th:action="@{'/messages/' + ${msgRepo.id} + '/like'}" can be done like this-->
-    <form th:action="@{/messages/{id}/like(id=${msgRepo.id})}" method="post">
+<!--    <form th:action="@{/messages/{id}/like(id=${msgRepo.id})}" method="post"> or like this-->
+        <form th:action="@{/messages/${msgRepo.id}/like}" method="post">
         <button type="submit">Like This Shit</button>
     </form>
 
