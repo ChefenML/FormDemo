@@ -17,7 +17,19 @@
     <h6 th:text="${'Date: ' + msgRepo.date}"></h6>
         <h2 th:text="${msgRepo.message}"></h2>
 
-    <h6 th:text="${'Who can see this shit:  ' + msgRepo.privpub}"></h6>
+    <h6 th:text="${'Who can see this shit:  ' + msgRepo.privpub + ' 👍' + msgRepo.likes}" ></h6>
+    <a th:href="@{/like}">👍</a>
+
+    <h6>
+        Who can see this:
+        <span th:text="${msgRepo.privpub}"></span>
+        👍
+        <span th:text="${msgRepo.likes}"></span>
+    </h6>
+
+    <form th:action="@{/messages/{id}/like(id=${msgRepo.id})}" method="post">
+        <button type="submit">Like</button>
+    </form>
 
 
 </div>

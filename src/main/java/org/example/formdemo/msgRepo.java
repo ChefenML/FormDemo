@@ -8,7 +8,8 @@ import java.util.List;
 
 @Repository
 public class msgRepo {
-    final List<MessageModel> msglist = new ArrayList<>();
+    private final List<MessageModel> msglist = new ArrayList<>();
+    private int nextId = 1;
 
 
     public msgRepo(){
@@ -19,6 +20,7 @@ public class msgRepo {
     }
 
     public void save(MessageModel msg){
+        msg.setId(nextId++);
         msglist.add(msg);
     }
 
@@ -32,9 +34,18 @@ public class msgRepo {
         return filterList;
     }
 
+    public MessageModel findById(int id){
+        for(MessageModel m : msglist){
+            if(m.getId() == id){
+                return m;
+            }
+        }
+        return null;
+    }
+
     public void mockData(){
-        msglist.add(new MessageModel("DrDouche","U all suck","Private", LocalDate.of(2025,2,2)));
-        msglist.add(new MessageModel("AnotherShit","fucktards","Public", LocalDate.of(2025,5,5)));
-        msglist.add(new MessageModel("DrShitPost","STFU","Network", LocalDate.of(2025,7,7)));
+        save(new MessageModel("DrDouche","U all suck","Private", LocalDate.of(2025,2,2)));
+        save(new MessageModel("AnotherShit","fucktards","Public", LocalDate.of(2025,5,5)));
+        save(new MessageModel("DrShitPost","STFU","Network", LocalDate.of(2025,7,7)));
     }
 }
