@@ -30,7 +30,7 @@ public class msgRepo {
 
     public void mockData(){
         msglist.add(new MessageModel("DrDouche","U all suck","Private", LocalDate.of(2025,2,2)));
-        msglist.add(new MessageModel("DrDouche","U all suck","Public", LocalDate.of(2025,5,5)));
-        msglist.add(new MessageModel("DrDouche","U all suck","Network", LocalDate.of(2025,7,7)));
+        msglist.add(new MessageModel("AnotherShit","fucktards","Public", LocalDate.of(2025,5,5)));
+        msglist.add(new MessageModel("DrShitPost","STFU","Network", LocalDate.of(2025,7,7)));
     }
 }

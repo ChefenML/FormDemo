@@ -11,7 +11,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class TodayController {
-    public TodayController() {
+    msgRepo msgRepo;
+    public TodayController(msgRepo msgRepo) {
+        this.msgRepo = msgRepo;
     }
 
     @GetMapping({"/social"})
@@ -33,11 +35,17 @@ public class TodayController {
                         + " has posted: " + messageModel.getMessage()
                         + " Private: " + messageModel.getPrivpub()
         );
-
+        msgRepo.save(messageModel);
         return "redirect:/socialpost";
     }
     @GetMapping("/socialpost")
     public String postCreated(){
         return "socialpost";
+    }
+
+    @GetMapping("/viewall")
+    public String viewAll(Model model){
+        model.addAttribute("msgRepo",msgRepo);
+        return "viewall";
     }
 }
