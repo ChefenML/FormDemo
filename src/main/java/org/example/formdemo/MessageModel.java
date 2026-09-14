@@ -8,12 +8,13 @@ public class MessageModel {
     private String privpub;
     private LocalDate date;
     private int likes;
-    private static int msgNo = 1;
-    private int id;
+    private static int nextId = 1;
+    private int id,id2;
 
     public MessageModel() {
         this.date = LocalDate.now();
         this.likes = 0;
+        this.id2 = nextId++;
     }
 
     public MessageModel(String name, String message, String privpub, LocalDate date){
@@ -22,6 +23,7 @@ public class MessageModel {
         this.privpub = privpub;
         this.date = date;
         this.likes = 0;
+        this.id2 = nextId++;
     }
 
     public String getName() {
@@ -74,5 +76,13 @@ public class MessageModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId2() {
+        return id2;
+    }
+
+    public void setId2(int id2) {
+        this.id2 = id2;
     }
 }
