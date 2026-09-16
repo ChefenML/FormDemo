@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Calc</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<!-- send form til whatever du @PostMapper, bare husk at @RequestParam("amount") <-skal have det rigtige navn på den ønskede input form -->
+<div class="range-box">
+<form action="#" th:action="@{/currencycalc}" method="post">
+<label for="number">Indtast USD</label>
+<input type="number" id="number" name="amount" placeholder="100" step="any">
+<input type="submit" value="Calc">
+</form>
+</div>
+<div class="range-box">
+<div th:if="${amount != null}">
+    <h3>Resultat for <span th:text="${amount}"></span> USD:</h3>
+
+    <!-- Formatering only, hvis udregning sker i java, det første tal sikrer at der ikke bare bliver skrevet .9 hvis taller er under 1. dvs 1 giver 0.9 og 0 giver .9: -->
+    <p>EUR: <span th:text="${#numbers.formatDecimal(eurResult, 1, 2)}"></span> €</p>
+    <p>DKK: <span th:text="${#numbers.formatDecimal(dkkResult, 1, 2)}"></span> kr.</p>
+    <p>NOK: <span th:text="${#numbers.formatDecimal(nokResult, 1, 2)}"></span> kr.</p>
+    <p>SEK: <span th:text="${#numbers.formatDecimal(sekResult, 2, 3)}"></span> kr.</p>
+
+
+
+    <!-- Udregning af 2 variabler:  -->
+     <p>EUR: <span th:text="${#numbers.formatDecimal(amount * rates.EUR, 1, 2)}"></span> €</p>
+</div>
+</div>
+<!--<span th:text="${amount}"></span>-->
+<!--    <span th:text="'DKK: ' + ${dkkResult}"></span>-->
+<!--    <span th:text="'EUR: ' + ${eurResult}"></span>-->
+<!--    <span th:text="'SWE: ' + ${rates.getSWE * amount}"></span>-->
+<!--    <span th:text="'NOK: ' + ${rates.getNOK * amount}"></span>-->
+
+</body>
+</html>

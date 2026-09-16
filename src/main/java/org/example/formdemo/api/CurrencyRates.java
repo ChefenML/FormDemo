@@ -53,23 +53,35 @@ public class CurrencyRates {
         @SerializedName("USD")
         private double USD;
 
+        @SerializedName("NOK")
+        private double NOK;
+
+        @SerializedName("SEK")
+        private double SEK;
+
         public Rate() {}
 
-        public Rate(double DKK, double EUR, double USD) {
+        public Rate(double DKK, double EUR, double USD, double NOK, double SEK) {
             this.DKK = DKK;
             this.EUR = EUR;
             this.USD = USD;
+            this.NOK = NOK;
+            this.SEK = SEK;
         }
 
         public double getDKK() { return DKK; }
         public double getEUR() { return EUR; }
         public double getUSD() { return USD; }
+        public double getNOK() { return NOK; }
+        public double getSEK() { return SEK; }
 
         @Override
         public String toString() {
             return "DKK: " + DKK + ", " +
                     "EUR: " + EUR + ", " +
-                    "USD: " + USD;
+                    "USD: " + USD + ", " +
+                    "NOK: " + NOK + ", " +
+                    "SEK: " + SEK;
         }
     }
 }

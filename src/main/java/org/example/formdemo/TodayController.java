@@ -1,13 +1,14 @@
 package org.example.formdemo;
 
 
+import java.io.IOException;
 import java.time.LocalDate;
+
+import org.example.formdemo.api.CurrencyRates;
+import org.example.formdemo.api.CurrencyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -67,9 +68,33 @@ public class TodayController {
         return "redirect:/viewall-filter";
     }
 
+
     @GetMapping("/viewall-filter")
     public String viewallFilter(){
         return "viewall-filter";
+    }
+
+    @GetMapping("/currencycalc")
+    public String currencycalc(){
+        return "currencycalc";
+    }
+
+    @PostMapping("/currencycalc")
+    public String calculateCurrency(@RequestParam("amount") double amount, Model model) throws IOException {
+        CurrencyService service = new CurrencyService();
+        CurrencyRates rates = service.getRates();
+
+        // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
+        model.addAttribute("amount", amount);
+        model.addAttribute("rates", rates.getRates());
+
+        // Beregn værdi før html eller efter ^^?
+        model.addAttribute("eurResult", amount * rates.getRates().getEUR());
+        model.addAttribute("dkkResult", amount * rates.getRates().getDKK());
+        model.addAttribute("nokResult", amount * rates.getRates().getNOK());
+        model.addAttribute("sekResult", amount * rates.getRates().getSEK());
+
+        return "currencycalc";
     }
 
 
