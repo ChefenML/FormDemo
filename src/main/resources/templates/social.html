@@ -21,8 +21,6 @@
     <textarea th:field="*{message}" placeholder="Dumb shit goes here" id="textarea" name="textarea" rows="4" cols="50">
     </textarea>
 
-            <br>
-
 <label for="dropbox">Who can see your dumb shit:</label>
 <!--    <label for="privpub">Private/Public</label>-->
 <!--    <input th:field="*{privpub}" type="text" id="privpub" name="privpub">-->
@@ -40,10 +38,10 @@
         </form>
     </div>
 
-<p th:text="${today}"></p>
+<p th:text="'year ' + ${today.getYear} + ' month: ' + ${today.getMonth} + ' day: ' + ${today.getDayOfWeek}"></p>
 <a th:href="@{/viewall}" type="button">ShitPostDB</a>
 <a th:href="@{/messages/private}">Private Shit</a>
 <a th:href="@{/messages/network}">Network Shit</a>
-<button type="button" th:href="@{/like}">To the dumbDB</button>
+<a th:href="@{/viewall}"> <button> AllPostDB</button></a>
 </body>
 </html>

@@ -15,7 +15,7 @@ body {
 .range-box {
     display: block;
     max-width: 500px;
-    margin: 25px auto;
+    margin: 10px auto;
     padding: 20px;
     background-color: #252b36;
     color: #ffffff;
@@ -29,6 +29,19 @@ body {
     margin: 0;
     color: #ffffff;
     font-size: 20px;
+}
+
+.range-box label {
+    margin: 0;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.range-box button {
+    margin: 10px;
+    font-size: 20px;
+    background: #252b36;
+    color: white;
 }
 
 .day-message {
@@ -166,7 +179,7 @@ p {
 /* Buttons */
 .button {
     display: inline-block;
-    padding: 11px 18px;
+    padding: 20px 20px;
     background: #2563eb;
     color: #ffffff;
     border: none;
@@ -175,7 +188,7 @@ p {
     cursor: pointer;
     font-size: 15px;
     transition: background 0.2s ease, transform 0.2s ease;
-    margin: 5px;
+    margin: 20px 0 0 0;
 }
 
 .button:hover {
@@ -190,7 +203,7 @@ form {
 
 label {
     display: block;
-    margin: 15px 0 6px;
+    margin: 10px 0 6px;
     color: #e5e7eb;
     font-weight: bold;
 }

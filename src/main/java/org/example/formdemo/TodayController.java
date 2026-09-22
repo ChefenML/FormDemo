@@ -4,22 +4,25 @@ package org.example.formdemo;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import jakarta.validation.Valid;
 import org.example.formdemo.api.CurrencyRates;
 import org.example.formdemo.api.CurrencyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class TodayController {
     msgRepo msgRepo;
+
     public TodayController(msgRepo msgRepo) {
         this.msgRepo = msgRepo;
     }
 
     @GetMapping({"/social"})
-    public String today(Model model) {
+    public String today(@Valid @ModelAttribute("MessageModel") MessageModel MessageModel, Model model) {
         model.addAttribute("today", LocalDate.now());
         model.addAttribute("messageModel", new MessageModel());
         return "social";
@@ -28,15 +31,11 @@ public class TodayController {
 
 
     @PostMapping("/social")
-    public String socialPost(RedirectAttributes redirectAttributes,
-                             @ModelAttribute("messageModel") MessageModel messageModel) {
+    public String socialPost(@Valid @ModelAttribute("MessageModel") MessageModel messageModel,
+                             BindingResult br, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("messageModel", messageModel);
         messageModel.setPrivpub("Private");
-        System.out.println(
-                "UserName: " + messageModel.getName()
-                        + " has posted: " + messageModel.getMessage()
-                        + " Private: " + messageModel.getPrivpub()
-        );
+
         msgRepo.save(messageModel);
         return "redirect:/socialpost";
     }

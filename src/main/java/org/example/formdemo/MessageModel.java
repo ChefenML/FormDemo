@@ -1,5 +1,8 @@
 package org.example.formdemo;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class MessageModel {
@@ -10,6 +13,7 @@ public class MessageModel {
     private int likes;
     private static int nextId = 1;
     private int id,id2;
+    private int autoId;
 
     public MessageModel() {
         this.date = LocalDate.now();
@@ -30,7 +34,7 @@ public class MessageModel {
         return this.name;
     }
 
-    public void setName(String name) {
+    public void setName(@NotBlank @Size(min=3,max=20) String name) {
         this.name = name;
     }
 
@@ -38,7 +42,7 @@ public class MessageModel {
         return this.message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(@NotBlank @Size(min=3,max=200) String message) {
         this.message = message;
     }
 
