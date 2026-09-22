@@ -12,7 +12,27 @@
 <form action="#" th:action="@{/currencycalc}" method="post">
 <label for="number">Indtast USD</label>
 <input type="number" id="number" name="amount" placeholder="100" step="any">
-<input type="submit" value="Calc">
+
+    <label for="fromcurrency">From Currency:</label>
+    <select id="fromcurrency" name="fromcurrency">
+        <option value="DKK">DKK</option>
+        <option value="SEK">SEK</option>
+        <option value="NOK">NOK</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+    </select>
+
+    <label for="tocurrency">From Currency:</label>
+    <select id="tocurrency" name="tocurrency">
+        <option value="DKK">DKK</option>
+        <option value="SEK">SEK</option>
+        <option value="NOK">NOK</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+    </select>
+
+
+    <input type="submit" value="Calc">
 </form>
 </div>
 <div class="range-box">

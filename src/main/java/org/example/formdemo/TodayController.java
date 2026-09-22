@@ -34,11 +34,20 @@ public class TodayController {
     public String socialPost(@Valid @ModelAttribute("MessageModel") MessageModel messageModel,
                              BindingResult br, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("messageModel", messageModel);
-        messageModel.setPrivpub("Private");
 
         msgRepo.save(messageModel);
         return "redirect:/socialpost";
     }
+//
+//    @PutMapping("/social")
+//    public String socialPut(@Valid @ModelAttribute("MessageModel") MessageModel messageModel,
+//                             BindingResult br, RedirectAttributes redirectAttributes) {
+//        redirectAttributes.addFlashAttribute("messageModel", messageModel);
+//
+//        msgRepo.save(messageModel);
+//        return "redirect:/socialpost";
+//    }
+
     @GetMapping("/socialpost")
     public String postCreated(){
         return "socialpost";
@@ -79,9 +88,33 @@ public class TodayController {
     }
 
     @PostMapping("/currencycalc")
-    public String calculateCurrency(@RequestParam("amount") double amount, Model model) throws IOException {
+    public String calculateCurrency(@RequestParam("amount") double amount,
+                                    @RequestParam("fromcurrency") String fromcurrency,
+                                    @RequestParam("tocurrency") String tocurrency,
+                                    Model model) throws IOException
+    {
+
         CurrencyService service = new CurrencyService();
         CurrencyRates rates = service.getRates();
+        double fromCur = 0;
+        double toCur = 0;
+        switch(fromcurrency){
+            case "DKK" -> fromCur = rates.getRates().getDKK();
+            case "EUR" -> fromCur = rates.getRates().getEUR();
+            case "NOK" -> fromCur = rates.getRates().getNOK();
+            case "SEK" -> fromCur = rates.getRates().getSEK();
+            case "USD" -> fromCur = rates.getRates().getUSD();
+        }
+
+        switch(tocurrency){
+            case "DKK" -> toCur = rates.getRates().getDKK();
+            case "EUR" -> toCur = rates.getRates().getEUR();
+            case "NOK" -> toCur = rates.getRates().getNOK();
+            case "SEK" -> toCur = rates.getRates().getSEK();
+            case "USD" -> toCur = rates.getRates().getUSD();
+        }
+
+        System.out.println(fromCur + " " + toCur);
 
         // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
         model.addAttribute("amount", amount);
@@ -95,6 +128,5 @@ public class TodayController {
 
         return "currencycalc";
     }
-
 
 }

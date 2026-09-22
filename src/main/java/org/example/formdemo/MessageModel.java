@@ -18,7 +18,7 @@ public class MessageModel {
     public MessageModel() {
         this.date = LocalDate.now();
         this.likes = 0;
-        this.id2 = nextId++;
+
     }
 
     public MessageModel(String name, String message, String privpub, LocalDate date){

@@ -13,7 +13,7 @@
 
 <div th:each="msgRepo: ${msgRepo}" class="range-box">
 
-    <h1 th:text="${msgRepo.name} + ' #' + ${msgRepo.id2}"></h1>
+    <h1 th:text="${msgRepo.name} + ' #' + ${msgRepo.id}"></h1>
     <h6 th:text="${'Date: ' + msgRepo.date}"></h6>
         <h2 th:text="${msgRepo.message}"></h2>
 
@@ -33,6 +33,6 @@
 
 
 </div>
-<a th:href="@{/social}">New Shit</a>
+<a th:href="@{/social}"> <button>New Shit</button></a>
 </body>
 </html>

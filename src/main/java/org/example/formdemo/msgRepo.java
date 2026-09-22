@@ -20,6 +20,10 @@ public class msgRepo {
         return Collections.unmodifiableList(msglist);
     }
 
+    public void updateMsg(MessageModel msg){
+        msglist.add(msg.getId()-1,msg);
+    }
+
     public void save(MessageModel msg){
         msg.setId(nextId++);
         msglist.add(msg);
