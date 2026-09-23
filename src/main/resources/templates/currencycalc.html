@@ -22,13 +22,13 @@
         <option value="EUR">EUR</option>
     </select>
 
-    <label for="tocurrency">From Currency:</label>
+    <label for="tocurrency">To Currency:</label>
     <select id="tocurrency" name="tocurrency">
-        <option value="DKK">DKK</option>
-        <option value="SEK">SEK</option>
-        <option value="NOK">NOK</option>
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
+            <option value="EUR">EUR</option>
+            <option value="SEK">SEK</option>
+            <option value="NOK">NOK</option>
+            <option value="USD">USD</option>
+            <option value="DKK">DKK</option>
     </select>
 
 
@@ -37,13 +37,13 @@
 </div>
 <div class="range-box">
 <div th:if="${amount != null}">
-    <h3>Resultat for <span th:text="${amount}"></span> USD:</h3>
+    <h3>USD$ <span th:text="${amount}"></span> 💲</h3>
 
     <!-- Formatering only, hvis udregning sker i java, det første tal sikrer at der ikke bare bliver skrevet .9 hvis taller er under 1. dvs 1 giver 0.9 og 0 giver .9: -->
-    <p>EUR: <span th:text="${#numbers.formatDecimal(eurResult, 1, 2)}"></span> €</p>
-    <p>DKK: <span th:text="${#numbers.formatDecimal(dkkResult, 1, 2)}"></span> kr.</p>
-    <p>NOK: <span th:text="${#numbers.formatDecimal(nokResult, 1, 2)}"></span> kr.</p>
-    <p>SEK: <span th:text="${#numbers.formatDecimal(sekResult, 2, 3)}"></span> kr.</p>
+    <p>EUR: <span th:text="${#numbers.formatDecimal(eurResult, 1, 3)}"></span> €</p>
+    <p>DKK: <span th:text="${#numbers.formatDecimal(dkkResult, 1, 3)}"></span> kr.</p>
+    <p>NOK: <span th:text="${#numbers.formatDecimal(nokResult, 1, 3)}"></span> kr.</p>
+    <p>SEK: <span th:text="${#numbers.formatDecimal(sekResult, 1, 3)}"></span> kr.</p>
 
 
 
@@ -51,11 +51,14 @@
      <p>EUR: <span th:text="${#numbers.formatDecimal(amount * rates.EUR, 1, 2)}"></span> €</p>
 </div>
 </div>
+<div class="range-box">
+    <h3><span th:text="${amount} + ' ' + ${fromcurrency}"></span></h3>
+    <h3>is worth <span th:text="${#numbers.formatDecimal(result, 1, 3)} + ' ' + ${tocurrency}"></span></h3>
 <!--<span th:text="${amount}"></span>-->
 <!--    <span th:text="'DKK: ' + ${dkkResult}"></span>-->
 <!--    <span th:text="'EUR: ' + ${eurResult}"></span>-->
 <!--    <span th:text="'SWE: ' + ${rates.getSWE * amount}"></span>-->
 <!--    <span th:text="'NOK: ' + ${rates.getNOK * amount}"></span>-->
-
+</div>
 </body>
 </html>

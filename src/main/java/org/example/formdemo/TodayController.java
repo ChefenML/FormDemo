@@ -98,28 +98,22 @@ public class TodayController {
         CurrencyRates rates = service.getRates();
         double fromCur = 0;
         double toCur = 0;
-        switch(fromcurrency){
-            case "DKK" -> fromCur = rates.getRates().getDKK();
-            case "EUR" -> fromCur = rates.getRates().getEUR();
-            case "NOK" -> fromCur = rates.getRates().getNOK();
-            case "SEK" -> fromCur = rates.getRates().getSEK();
-            case "USD" -> fromCur = rates.getRates().getUSD();
-        }
+        fromCur = getFromCur(fromcurrency, rates);
 
-        switch(tocurrency){
-            case "DKK" -> toCur = rates.getRates().getDKK();
-            case "EUR" -> toCur = rates.getRates().getEUR();
-            case "NOK" -> toCur = rates.getRates().getNOK();
-            case "SEK" -> toCur = rates.getRates().getSEK();
-            case "USD" -> toCur = rates.getRates().getUSD();
-        }
+        toCur = getFromCur(tocurrency, rates);
+        double currencyRatio = toCur/fromCur;
 
-        System.out.println(fromCur + " " + toCur);
-
+        System.out.println(amount + " from " + fromcurrency + " to " + tocurrency + " " + currencyRatio * amount);
+        System.out.println(rates.getRates());
+        System.out.println("fromcurrency: " + fromcurrency);
+        System.out.println("tocurrency: " + tocurrency);
+        System.out.println("currencyRatio: " + currencyRatio);
         // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
         model.addAttribute("amount", amount);
         model.addAttribute("rates", rates.getRates());
-
+        model.addAttribute("fromcurrency",fromcurrency);
+        model.addAttribute("tocurrency",tocurrency);
+        model.addAttribute("result",currencyRatio * amount);
         // Beregn værdi før html eller efter ^^?
         model.addAttribute("eurResult", amount * rates.getRates().getEUR());
         model.addAttribute("dkkResult", amount * rates.getRates().getDKK());
@@ -127,6 +121,18 @@ public class TodayController {
         model.addAttribute("sekResult", amount * rates.getRates().getSEK());
 
         return "currencycalc";
+    }
+
+    private double getFromCur(String currency, CurrencyRates rates) {
+        return switch(currency){
+            case "DKK" -> rates.getRates().getDKK();
+            case "EUR" -> rates.getRates().getEUR();
+            case "NOK" -> rates.getRates().getNOK();
+            case "SEK" -> rates.getRates().getSEK();
+            case "USD" -> rates.getRates().getUSD();
+            default -> 0;
+        };
+
     }
 
 }
