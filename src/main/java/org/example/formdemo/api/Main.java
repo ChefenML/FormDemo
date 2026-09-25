@@ -7,6 +7,7 @@ public class Main {
         CurrencyService service = new CurrencyService();
         CurrencyRates rates = service.getRates();
         System.out.println("Valutakurser baseret på USD dollar\n" + rates);
+        System.out.println(rates.getSource());
     }
 }
 

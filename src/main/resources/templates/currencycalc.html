@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Currency Calc</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/currency.css}">
 </head>
 
 <body>
@@ -35,6 +35,17 @@
     <input type="submit" value="Calc">
 </form>
 </div>
+
+<div class="range-box">
+    <h3><span th:text="${amount} + ' ' + ${fromcurrency}"></span></h3>
+    <h3><span th:text="'is worth ' + ${#numbers.formatDecimal(result, 1, 3)} + ' ' + ${tocurrency}"></span></h3>
+    <!--<span th:text="${amount}"></span>-->
+    <!--    <span th:text="'DKK: ' + ${dkkResult}"></span>-->
+    <!--    <span th:text="'EUR: ' + ${eurResult}"></span>-->
+    <!--    <span th:text="'SWE: ' + ${rates.getSWE * amount}"></span>-->
+    <!--    <span th:text="'NOK: ' + ${rates.getNOK * amount}"></span>-->
+</div>
+
 <div class="range-box">
 <div th:if="${amount != null}">
     <h3>USD$ <span th:text="${amount}"></span></h3>
@@ -51,14 +62,6 @@
      <p>EUR: <span th:text="${#numbers.formatDecimal(amount * rates.EUR, 1, 2)}"></span> €</p>
 </div>
 </div>
-<div class="range-box">
-    <h3><span th:text="${amount} + ' ' + ${fromcurrency}"></span></h3>
-    <h3>is worth <span th:text="${#numbers.formatDecimal(result, 1, 3)} + ' ' + ${tocurrency}"></span></h3>
-<!--<span th:text="${amount}"></span>-->
-<!--    <span th:text="'DKK: ' + ${dkkResult}"></span>-->
-<!--    <span th:text="'EUR: ' + ${eurResult}"></span>-->
-<!--    <span th:text="'SWE: ' + ${rates.getSWE * amount}"></span>-->
-<!--    <span th:text="'NOK: ' + ${rates.getNOK * amount}"></span>-->
-</div>
+
 </body>
 </html>

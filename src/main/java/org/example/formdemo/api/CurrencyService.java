@@ -12,6 +12,7 @@ public class CurrencyService {
         //Se evt. mere her: https://forexvalutaomregner.dk/pages/api);
         URL url = new URL("https://cdn.moneyconvert.net/api/latest.json");
 
+
         // Indlæsning af valutakurser
         BufferedReader inputFromUrl = new BufferedReader(new InputStreamReader(url.openStream()));
 
