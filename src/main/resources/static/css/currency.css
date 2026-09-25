@@ -168,10 +168,15 @@ p span {
     font-weight: 700;
 }
 
-.range-box:last-child {
-    background: var(--result-background);
-    border-color: rgba(79, 70, 229, 0.15);
+.range-box:nth-of-type(odd) {
+    background: #ffffff;
 }
+
+.range-box:nth-of-type(even) {
+    background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+    border-color: rgba(79, 70, 229, 0.2);
+}
+
 
 .range-box:last-child h3 {
     margin: 5px 0;
