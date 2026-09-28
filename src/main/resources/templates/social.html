@@ -16,11 +16,12 @@
         <form action="/social" th:action="@{/social}" method="post" th:object="${messageModel}">
         <label for="name">User Name</label>
         <input type="text" id="name" th:field="*{name}" placeholder="Name of stupid">
+            <span class="alert alert-warning" th:if="${#fields.hasErrors('name')}">Cant be empty, minimum 3 characters, maximum 20 characters</span>
 
     <label for="textarea">Shit posting goes here:</label>
     <textarea th:field="*{message}" placeholder="Dumb shit goes here" id="textarea" name="textarea" rows="4" cols="50">
     </textarea>
-
+            <span class="alert alert-warning" th:if="${#fields.hasErrors('message')}">Cant be empty, minimum 3 characters, maximum 200 characters</span>
 <label for="dropbox">Who can see your dumb shit:</label>
 <!--    <label for="privpub">Private/Public</label>-->
 <!--    <input th:field="*{privpub}" type="text" id="privpub" name="privpub">-->
@@ -38,7 +39,7 @@
         </form>
     </div>
 
-<p th:text="'year ' + ${today.getYear} + ' month: ' + ${today.getMonth} + ' day: ' + ${today.getDayOfWeek}"></p>
+<!--<p th:text="'year ' + ${today.getYear} + ' month: ' + ${today.getMonth} + ' day: ' + ${today.getDayOfWeek}"></p>-->
 <a th:href="@{/viewall}" type="button">ShitPostDB</a>
 <a th:href="@{/messages/private}">Private Shit</a>
 <a th:href="@{/messages/network}">Network Shit</a>

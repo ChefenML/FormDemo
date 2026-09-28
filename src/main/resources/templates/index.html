@@ -1,0 +1,37 @@
+<!DOCTYPE html "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/css/currency.css" crossorigin="anonymous">
+  <title>Simple Spring Boot Application</title>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <h1>Simple Spring Boot Application</h1>
+    <h2>MessageBoard</h2>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>message</th>
+
+      </tr>
+      <tr th:each="msg: ${MessageModel}">
+        <td th:text="${msg.id}" />
+        <td th:text="${msg.name}" />
+        <td th:text="${msg.message}" />
+        <td>
+          <a href="#" class="btn btn-success">Edit</a>
+          <a href="#" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+</body>
+</html>

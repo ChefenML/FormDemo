@@ -1,12 +1,26 @@
 package org.example.formdemo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+//@Entity
 public class MessageModel {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id1;
+
+    @NotBlank
+    @Size(min=3,max=20)
     private String name;
+
+    @NotBlank
+    @Size(min=3,max=200)
     private String message;
     private String privpub;
     private LocalDate date;
@@ -26,11 +40,19 @@ public class MessageModel {
         this.likes = 0;
     }
 
+    public Long getId1() {
+        return id1;
+    }
+
+    public void setId1(Long id1) {
+        this.id1 = id1;
+    }
+
     public String getName() {
         return this.name;
     }
 
-    public void setName(@NotBlank @Size(min=3,max=20) String name) {
+    public void setName( String name) {
         this.name = name;
     }
 
@@ -38,7 +60,7 @@ public class MessageModel {
         return this.message;
     }
 
-    public void setMessage(@NotBlank @Size(min=3,max=200) String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 

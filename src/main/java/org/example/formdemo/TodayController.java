@@ -22,18 +22,22 @@ public class TodayController {
     }
 
     @GetMapping({"/social"})
-    public String today(@Valid @ModelAttribute("MessageModel") MessageModel MessageModel, Model model) {
+    public String today(Model model) {
         model.addAttribute("today", LocalDate.now());
         model.addAttribute("messageModel", new MessageModel());
-        return "social";
+       return "social";
     }
 
 
 
     @PostMapping("/social")
-    public String socialPost(@Valid @ModelAttribute("MessageModel") MessageModel messageModel,
-                             BindingResult br, RedirectAttributes redirectAttributes) {
+    public String socialPost(@Valid @ModelAttribute("messageModel") MessageModel messageModel,
+                             BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("messageModel", messageModel);
+
+        if (bindingResult.hasErrors()){
+            return "social";
+        }
 
         msgRepo.save(messageModel);
         return "redirect:/socialpost";
@@ -93,27 +97,32 @@ public class TodayController {
                                     @RequestParam("tocurrency") String tocurrency,
                                     Model model) throws IOException
     {
-
+        //set up currency service
         CurrencyService service = new CurrencyService();
         CurrencyRates rates = service.getRates();
+
+        //use currency to/from
         double fromCur = 0;
         double toCur = 0;
-        fromCur = getFromCur(fromcurrency, rates);
 
+        //Get rate from rate service, converting string to double
+        fromCur = getFromCur(fromcurrency, rates);
         toCur = getFromCur(tocurrency, rates);
-        double currencyRatio = toCur/fromCur;
+        double currencyRatio = toCur/fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
 
         System.out.println(amount + " from " + fromcurrency + " to " + tocurrency + " " + currencyRatio * amount);
         System.out.println(rates.getRates());
         System.out.println("fromcurrency: " + fromcurrency);
         System.out.println("tocurrency: " + tocurrency);
         System.out.println("currencyRatio: " + currencyRatio);
+
         // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
         model.addAttribute("amount", amount);
         model.addAttribute("rates", rates.getRates());
         model.addAttribute("fromcurrency",fromcurrency);
         model.addAttribute("tocurrency",tocurrency);
         model.addAttribute("result",currencyRatio * amount);
+
         // Beregn værdi før html eller efter ^^?
         model.addAttribute("eurResult", amount * rates.getRates().getEUR());
         model.addAttribute("dkkResult", amount * rates.getRates().getDKK());
@@ -130,7 +139,7 @@ public class TodayController {
             case "NOK" -> rates.getRates().getNOK();
             case "SEK" -> rates.getRates().getSEK();
             case "USD" -> rates.getRates().getUSD();
-            default -> 0;
+            default -> rates.getRates().getDKK();
         };
 
     }

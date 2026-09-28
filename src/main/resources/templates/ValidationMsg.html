@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Time to yell on the internet</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<h1>Social Shit posting</h1>
+
+
+<div class="range-box">
+    <form action="#" th:action="@{/ValidationMsg}" method="post" th:object="${MessageModel}">
+        <label for="name">User Name</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Name of stupid">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        <label for="textarea">Shit posting goes here:</label>
+        <textarea th:field="*{message}" placeholder="Dumb shit goes here" id="textarea" name="textarea" rows="4"
+                  cols="50">
+        </textarea>
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></div>
+
+        <label for="dropbox">Who can see your dumb shit:</label>
+        <!--    <label for="privpub">Private/Public</label>-->
+        <!--    <input th:field="*{privpub}" type="text" id="privpub" name="privpub">-->
+        <select th:field="*{privpub}" id="dropbox">
+            <!--            <option th:value="'M'" th:text="Male"></option>-->
+            <!--            <option th:value="'F'" th:text="Female"></option>-->
+            <!--        <label for="viewoptions">Choose who can see your shitposting:</label>-->
+            <!--        <select th:field="*{privpub}" id="viewoptions" name="viewoptions">-->
+            <option th:value="'private'" th:text="Private"></option>
+            <option th:value="'public'" th:text="Public"></option>
+            <option th:value="'network'" th:text="Network"></option>
+        </select>
+        <br>
+        <button type="submit">Submit your shit</button>
+    </form>
+</div>
+
+<!--<p th:text="'year ' + ${today.getYear} + ' month: ' + ${today.getMonth} + ' day: ' + ${today.getDayOfWeek}"></p>-->
+<a th:href="@{/viewall}" type="button">ShitPostDB</a>
+<a th:href="@{/messages/private}">Private Shit</a>
+<a th:href="@{/messages/network}">Network Shit</a>
+<a th:href="@{/viewall}">
+    <button> AllPostDB</button>
+</a>
+</body>
+</html>
