@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ValidationController {
@@ -18,15 +19,19 @@ public class ValidationController {
     @GetMapping("/validation")
     public String showAddPersonForm(Model model) {
         model.addAttribute("MessageModel",new MessageModel());
-        return "ValidationMsg";
+        return "validation";
     }
 
     @PostMapping("/validation")
-    public String addPerson(@Valid @ModelAttribute("MessageModel") MessageModel msgmodel, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "ValidationMsg";
+    public String addPerson(@Valid @ModelAttribute("MessageModel") MessageModel msgmodel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        redirectAttributes.addFlashAttribute("MessageModel", msgmodel);
+
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            return "validation";
         }
         ValidMsgRepo.save(msgmodel);
-        return "redirect:/index";
+        return "redirect:/validation";
     }
 }

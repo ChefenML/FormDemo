@@ -21,9 +21,9 @@
         Who can see this:
         <span th:text="${msgRepo.privpub}"></span>
 
-        <span th:text="${msgRepo.likes}"></span>
+        <span th:text="'Likes: ' + ${msgRepo.likes}"></span>
         👍
-        <span th:text="${msgRepo.id}"></span>;
+        <span th:text="'ID#' + ${msgRepo.id}"></span>;
     </h6>
 
 
