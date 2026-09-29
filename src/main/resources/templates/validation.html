@@ -12,7 +12,7 @@
 
 
 <div class="range-box">
-    <form action="#" th:action="@{/ValidationMsg}" method="post" th:object="${MessageModel}">
+    <form action="#" th:action="@{/validation}" method="post" th:object="${MessageModel}">
         <label for="name">User Name</label>
         <input type="text" id="name" th:field="*{name}" placeholder="Name of stupid">
         <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>

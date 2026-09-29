@@ -23,15 +23,16 @@ public class ValidationController {
     }
 
     @PostMapping("/validation")
-    public String addPerson(@Valid @ModelAttribute("MessageModel") MessageModel msgmodel, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String addPerson(@Valid @ModelAttribute("MessageModel") MessageModel MessageModel,
+                            BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        redirectAttributes.addFlashAttribute("MessageModel", msgmodel);
+        redirectAttributes.addFlashAttribute("MessageModel", MessageModel);
 
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
             return "validation";
         }
-        ValidMsgRepo.save(msgmodel);
+        ValidMsgRepo.save(MessageModel);
         return "redirect:/validation";
     }
 }
