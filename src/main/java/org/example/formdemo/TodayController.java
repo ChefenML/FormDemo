@@ -4,7 +4,6 @@ package org.example.formdemo;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.example.formdemo.api.CurrencyRates;
 import org.example.formdemo.api.CurrencyService;
@@ -75,7 +74,7 @@ public class TodayController {
     }
 
     @PostMapping("/messagesfilter/{id}/like")
-    public String likeMessageFilter(@PathVariable int id, HttpServletRequest request, Model model) {
+    public String likeMessageFilter(@PathVariable int id) {
 
         MessageModel message = msgRepo.findById(id);
 
@@ -114,12 +113,11 @@ public class TodayController {
         CurrencyRates rates = service.getRates();
 
         //use currency to/from
-        double fromCur = 0;
-        double toCur = 0;
+
 
         //Get rate from rate service, converting string to double
-        fromCur = getFromCur(fromcurrency, rates);
-        toCur = getFromCur(tocurrency, rates);
+        double fromCur = getFromCur(fromcurrency, rates);
+        double toCur = getFromCur(tocurrency, rates);
         double currencyRatio = toCur/fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
 
         System.out.println(amount + " from " + fromcurrency + " to " + tocurrency + " " + currencyRatio * amount);
