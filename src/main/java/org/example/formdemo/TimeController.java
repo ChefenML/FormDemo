@@ -16,4 +16,6 @@ public class TimeController {
         model.addAttribute("second", second);
         return "second";
     }
+
+
 }

@@ -29,7 +29,6 @@ public class ValidationController {
         redirectAttributes.addFlashAttribute("MessageModel", MessageModel);
 
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getAllErrors());
             return "validation";
         }
         ValidMsgRepo.save(MessageModel);

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Off road douchebag</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="nice-table">
+    <p>Looking for douches ehh?</p>
+    <p th:text="'ErrorCode: ' + ${errorCode}"></p>
+    <p th:text="'ErrorMessage: ' + ${errorMessage}"></p>
+</div>
+
+<div class="range-box">
+    <p><strong>Status:</strong> <span th:text="${status}">500</span></p>
+    <p><strong>Error:</strong> <span th:text="${error}">Internal Server Error</span></p>
+    <p><strong>Message:</strong> <span th:text="${message}">Error Details</span></p>
+    <p><strong>Path:</strong> <span th:text="${path}">/broken-link</span></p>
+</div>
+<div class="range-box">
+<a th:href="@{/}">Return Home</a>
+    <a th:href="@{/viewall}" class="button">Back to Douche Collection</a>
+    <a th:href="@{/social}" class="button">Or create a DoucheBag maybe?</a>
+    <a th:href="@{/}" class="button">Feeling lucky punk?</a>
+    <a th:href="@{/currencycalc}" class="button">Convert coins</a>
+    <a th:href="@{/validation}" class="button">beep boop validation</a>
+</div>
+</body>
+</html>

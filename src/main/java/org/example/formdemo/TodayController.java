@@ -4,6 +4,7 @@ package org.example.formdemo;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.example.formdemo.api.CurrencyRates;
 import org.example.formdemo.api.CurrencyService;
@@ -73,6 +74,16 @@ public class TodayController {
         return "redirect:/viewall";
     }
 
+    @PostMapping("/messagesfilter/{id}/like")
+    public String likeMessageFilter(@PathVariable int id, HttpServletRequest request, Model model) {
+
+        MessageModel message = msgRepo.findById(id);
+
+        message.likePost();
+
+        return "redirect:/messages/" + message.getPrivpub();
+    }
+
     @GetMapping("/messages/{filter}")
     public String filterMessages(@PathVariable String filter, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("msgRepo", msgRepo.filterList(filter));
@@ -82,7 +93,8 @@ public class TodayController {
 
 
     @GetMapping("/viewall-filter")
-    public String viewallFilter(){
+    public String viewallFilter(Model model){
+
         return "viewall-filter";
     }
 

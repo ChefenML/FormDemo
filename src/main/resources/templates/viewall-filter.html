@@ -11,7 +11,7 @@
 <!--private String privpub;-->
 <!--private LocalDate date;-->
 
-<div th:each="msgRepo: ${msgRepo}" class="range-box">
+<div th:each="msgRepo : ${msgRepo}" class="range-box">
 
     <h1 th:text="${msgRepo.name}"></h1>
     <h6 th:text="${'Date: ' + msgRepo.date}"></h6>
@@ -28,12 +28,12 @@
 
     <!--    th:action="@{'/messages/' + ${msgRepo.id} + '/like'}" can be done like this-->
 <!--    <form th:action="@{/messages/{id}/like(id=${msgRepo.id})}" method="post"> or like this-->
-        <form th:action="@{/messages/${msgRepo.id}/like}" method="post">
+    <form th:action="@{/messagesfilter/{id}/like(id=${msgRepo.id})}" method="post">
         <button type="submit">Like This Shit</button>
     </form>
 
 
 </div>
-<a th:href="@{/social}">New Shit</a>
+<a th:href="@{/social}" class="button">New Shit</a>
 </body>
 </html>
