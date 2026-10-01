@@ -6,12 +6,6 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div class="nice-table">
-    <p>Looking for douches ehh?</p>
-    <p th:text="'ErrorCode: ' + ${errorCode}"></p>
-    <p th:text="'ErrorMessage: ' + ${errorMessage}"></p>
-</div>
-
 <div class="range-box">
     <p><strong>Status:</strong> <span th:text="${status}">500</span></p>
     <p><strong>Error:</strong> <span th:text="${error}">Internal Server Error</span></p>
