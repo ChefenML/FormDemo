@@ -24,7 +24,7 @@ public class TodayController {
     @GetMapping({"/social"})
     public String today(Model model) {
         model.addAttribute("today", LocalDate.now());
-        model.addAttribute("messageModel", new MessageModel());
+        model.addAttribute("messageModel", messageModel());
        return "social";
     }
 
