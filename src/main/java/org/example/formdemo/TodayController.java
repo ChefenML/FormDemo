@@ -104,13 +104,7 @@ public class TodayController {
     }
 
     @GetMapping("/currencycalc")
-    public String currencycalc(Model model){
-        model.addAttribute("amount", null);
-        model.addAttribute("result", null);
-        model.addAttribute("eurResult", null);
-        model.addAttribute("dkkResult", null);
-        model.addAttribute("nokResult", null);
-        model.addAttribute("sekResult", null);
+    public String currencycalc(){
         return "currencycalc";
     }
 
@@ -118,19 +112,19 @@ public class TodayController {
     public String calculateCurrency(@RequestParam("amount") double amount,
                                     @RequestParam("fromcurrency") String fromcurrency,
                                     @RequestParam("tocurrency") String tocurrency,
-                                    Model model) throws IOException
+                                    Model model)
     {
-        //set up currency service
-        CurrencyService service = new CurrencyService();
-        CurrencyRates rates = service.getRates();
 
-        //use currency to/from
+        try {
+            //set up currency service
+            CurrencyService service = new CurrencyService();
+            CurrencyRates rates = service.getRates();
 
-
-        //Get rate from rate service, converting string to double
-        double fromCur = getFromCur(fromcurrency, rates);
-        double toCur = getFromCur(tocurrency, rates);
-        double currencyRatio = toCur/fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
+            //use currency to/from
+            //Get rate from rate service, converting string to double
+            double fromCur = getFromCur(fromcurrency, rates);
+            double toCur = getFromCur(tocurrency, rates);
+            double currencyRatio = toCur/fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
 
 //        System.out.println(amount + " from " + fromcurrency + " to " + tocurrency + " " + currencyRatio * amount);
 //        System.out.println(rates.getRates());
@@ -138,20 +132,24 @@ public class TodayController {
 //        System.out.println("tocurrency: " + tocurrency);
 //        System.out.println("currencyRatio: " + currencyRatio);
 
-        // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
-        model.addAttribute("amount", amount);
-        model.addAttribute("rates", rates.getRates());
-        model.addAttribute("fromcurrency",fromcurrency);
-        model.addAttribute("tocurrency",tocurrency);
-        model.addAttribute("result",currencyRatio * amount);
+            // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
+            model.addAttribute("amount", amount);
+            model.addAttribute("rates", rates.getRates());
+            model.addAttribute("fromcurrency",fromcurrency);
+            model.addAttribute("tocurrency",tocurrency);
+            model.addAttribute("result",currencyRatio * amount);
 
-        // Beregn værdi før html eller efter ^^?
-        model.addAttribute("eurResult", amount * rates.getRates().getEUR());
-        model.addAttribute("dkkResult", amount * rates.getRates().getDKK());
-        model.addAttribute("nokResult", amount * rates.getRates().getNOK());
-        model.addAttribute("sekResult", amount * rates.getRates().getSEK());
+            // Beregn værdi før html eller efter ^^?
+            model.addAttribute("eurResult", amount * rates.getRates().getEUR());
+            model.addAttribute("dkkResult", amount * rates.getRates().getDKK());
+            model.addAttribute("nokResult", amount * rates.getRates().getNOK());
+            model.addAttribute("sekResult", amount * rates.getRates().getSEK());
 
-        return "currencycalc";
+            return "currencycalc";
+        } catch (IOException e) {
+            model.addAttribute("errorMessage", "Could not fetch exchange rates");
+            return "currencycalc";
+        }
     }
 
     private double getFromCur(String currency, CurrencyRates rates) {
