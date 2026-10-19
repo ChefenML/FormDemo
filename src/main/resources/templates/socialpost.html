@@ -8,9 +8,9 @@
 <body>
 <div class="range-box">
 <p>Username:</p>
-    <p th:text="${messageModel?.name}"></p>
+    <p th:text="${messageModel?.name ?: '(empty)'}"></p>
 <p>Posted:</p>
-    <p th:text="${messageModel?.message}"></p>
+    <p th:text="${messageModel?.message ?: '(empty)'}">(empty)</p>
 <p>Private/public:</p>
     <p th:text="${messageModel?.privpub}"></p>
     <p>Date:</p>

@@ -24,7 +24,7 @@ public class TodayController {
     @GetMapping({"/social"})
     public String today(Model model) {
         model.addAttribute("today", LocalDate.now());
-        model.addAttribute("messageModel", messageModel());
+        model.addAttribute("messageModel", new MessageModel());
        return "social";
     }
 
@@ -59,7 +59,8 @@ public class TodayController {
 
     @GetMapping("/socialpost")
     public String postCreated(Model model) {
-        model.addAttribute("messageModel", messageModel());
+        MessageModel lastMessage = msgRepo.getLast();  // ← Query DB, not session
+        model.addAttribute("messageModel", lastMessage);
         return "socialpost";
     }
 
@@ -104,7 +105,7 @@ public class TodayController {
     }
 
     @GetMapping("/currencycalc")
-    public String currencycalc(){
+    public String currencycalc(Model model){
         return "currencycalc";
     }
 
