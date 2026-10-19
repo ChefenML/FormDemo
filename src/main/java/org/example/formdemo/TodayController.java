@@ -52,8 +52,14 @@ public class TodayController {
 //        return "redirect:/socialpost";
 //    }
 
+    @ModelAttribute("messageModel")
+    public MessageModel messageModel() {
+        return new MessageModel();
+    }
+
     @GetMapping("/socialpost")
-    public String postCreated(){
+    public String postCreated(Model model) {
+        model.addAttribute("messageModel", new MessageModel());
         return "socialpost";
     }
 
@@ -98,7 +104,13 @@ public class TodayController {
     }
 
     @GetMapping("/currencycalc")
-    public String currencycalc(){
+    public String currencycalc(Model model){
+        model.addAttribute("amount", null);
+        model.addAttribute("result", null);
+        model.addAttribute("eurResult", null);
+        model.addAttribute("dkkResult", null);
+        model.addAttribute("nokResult", null);
+        model.addAttribute("sekResult", null);
         return "currencycalc";
     }
 

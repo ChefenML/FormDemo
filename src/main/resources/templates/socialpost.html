@@ -8,15 +8,19 @@
 <body>
 <div class="range-box">
 <p>Username:</p>
-<p th:text="${messageModel.name}"></p>
+    <p th:text="${messageModel?.name}"></p>
 <p>Posted:</p>
-<p th:text="${messageModel.message}"></p>
+    <p th:text="${messageModel?.message}"></p>
 <p>Private/public:</p>
-<p th:text="${messageModel.privpub}"></p>
+    <p th:text="${messageModel?.privpub}"></p>
     <p>Date:</p>
-    <p th:text="${messageModel.date}"></p>
+    <p th:text="${messageModel?.date}"></p>
     <a th:href="@{/social}"> <button> New Post</button></a>
     <a th:href="@{/viewall}"> <button> View All</button></a>
 </div>
 </body>
 </html>
+
+
+
+
