@@ -147,6 +147,7 @@ public class TodayController {
             model.addAttribute("sekResult", amount * rates.getRates().getSEK());
 
             return "currencycalc";
+
         } catch (IOException e) {
             model.addAttribute("errorMessage", "Could not fetch exchange rates");
             return "currencycalc";
