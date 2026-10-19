@@ -150,6 +150,7 @@ public class TodayController {
 
         } catch (IOException e) {
             model.addAttribute("errorMessage", "Could not fetch exchange rates");
+            model.addAttribute("errorMsgCatch", e);
             return "currencycalc";
         }
     }
