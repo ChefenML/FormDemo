@@ -59,7 +59,7 @@ public class TodayController {
 
     @GetMapping("/socialpost")
     public String postCreated(Model model) {
-        model.addAttribute("messageModel", new MessageModel());
+        model.addAttribute("messageModel", messageModel());
         return "socialpost";
     }
 
