@@ -120,11 +120,11 @@ public class TodayController {
         double toCur = getFromCur(tocurrency, rates);
         double currencyRatio = toCur/fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
 
-        System.out.println(amount + " from " + fromcurrency + " to " + tocurrency + " " + currencyRatio * amount);
-        System.out.println(rates.getRates());
-        System.out.println("fromcurrency: " + fromcurrency);
-        System.out.println("tocurrency: " + tocurrency);
-        System.out.println("currencyRatio: " + currencyRatio);
+//        System.out.println(amount + " from " + fromcurrency + " to " + tocurrency + " " + currencyRatio * amount);
+//        System.out.println(rates.getRates());
+//        System.out.println("fromcurrency: " + fromcurrency);
+//        System.out.println("tocurrency: " + tocurrency);
+//        System.out.println("currencyRatio: " + currencyRatio);
 
         // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
         model.addAttribute("amount", amount);
