@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Time to yell on the internet</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
 </head>
 
-<body>
+<body class="page-social">
 
 <h1>Social Shit posting</h1>
 
@@ -48,4 +49,8 @@
     <button> AllPostDB</button>
 </a>
 </body>
+<footer>
+    <div th:replace="~{fragments/navigation.html :: bottomNavigation}">
+    </div>
+</footer>
 </html>

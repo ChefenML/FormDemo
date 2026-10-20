@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
     <title>Title</title>
 </head>
 <body>
@@ -14,4 +15,8 @@
     <p>this is in card class</p>
 </div>
 </body>
+<footer>
+    <div th:replace="~{fragments/navigation.html :: bottomNavigation}">
+    </div>
+</footer>
 </html>

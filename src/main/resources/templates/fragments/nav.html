@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<body>
+
+<header th:fragment="nav(current)" class="navcontainer">
+    <span class="navtitle">Shitpost Central</span>
+    <span class="navlocation" th:text="${current}">Home</span>
+    <nav class="navitem">
+        <a th:href="@{/social}"        th:classappend="${current == 'New Post'} ? 'active'">New Post</a>
+        <a th:href="@{/viewall}"       th:classappend="${current == 'View All'} ? 'active'">View All</a>
+        <a th:href="@{/currencycalc}"  th:classappend="${current == 'Currency'} ? 'active'">Currency</a>
+    </nav>
+</header>
+
+</body>
+</html>

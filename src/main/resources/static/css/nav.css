@@ -1,0 +1,72 @@
+/* nulstilling og overordnet container */
+.navcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1a1a1e;
+    color: #f1f1f1;
+    padding: 0.75rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    border-bottom: 2px solid #2d2d35;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Titel / Brand */
+.navtitle {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ff4757;
+    letter-spacing: -0.3px;
+}
+
+/* Dynamisk lokation indicator */
+.navlocation {
+    font-size: 0.85rem;
+    color: #a0a0ab;
+    background-color: #2a2a32;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    border: 1px solid #3a3a45;
+}
+
+/* Link-knapper */
+.navitem a {
+    color: #e1e1e6;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+}
+
+/* Hover & aktive tilstande */
+.navitem a:hover {
+    background-color: #ff4757;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.navitem a:active {
+    transform: translateY(0);
+}
+
+.botnavcontainer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1a1a1e;
+    color: #f1f1f1;
+    padding: 0.75rem 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    border-bottom: 2px solid #2d2d35;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    gap: 1rem;
+    flex-wrap: wrap;
+}

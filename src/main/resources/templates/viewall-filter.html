@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Internet douchebag messageboard</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
 </head>
 <body>
 <!--private String name;-->
@@ -36,4 +37,8 @@
 </div>
 <a th:href="@{/social}" class="button">New Shit</a>
 </body>
+<footer>
+    <div th:replace="~{fragments/navigation.html :: bottomNavigation}">
+    </div>
+</footer>
 </html>

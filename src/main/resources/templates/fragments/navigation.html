@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>doesnt matter</title>
+    <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
+</head>
+
+<body>
+
+<div th:fragment="topNavigation(currentlocation)" class="navcontainer">
+    <div class="navtitle">Azure Test</div>
+    <div class="navlocation" th:insert="${currentlocation}">$site-var title goes here</div>
+    <div class="navitem"><a th:href="@{/social}">SocialPost</a></div>
+    <div class="navitem"><a th:href="@{/currencycalc}">CurrencyCalc</a></div>
+    <div class="navitem"><a th:href="@{/offlinecurrencycalc}">CurrencyCalc Offline</a></div>
+    <div class="navitem"><a th:href="@{/random}">Random</a></div>
+</div>
+
+<div th:fragment="bottomNavigation" class="botnavcontainer">
+    <div class="navitem"><a th:href="@{/viewall}">Viewall</a></div>
+    <div class="navitem"><a th:href="@{/random}">Random</a></div>
+    <div class="navitem"><a th:href="@{/second}">Second</a></div>
+    <div class="navitem"><a th:href="@{/people}">People</a></div>
+    <div class="navitem"><a th:href="@{/day}">Day</a></div>
+</div>
+
+</body>

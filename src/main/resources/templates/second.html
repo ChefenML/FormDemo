@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${second}"></title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
 </head>
 
 <body>
@@ -45,4 +46,8 @@
     </p>
 </div>
 </body>
+<footer>
+    <div th:replace="~{fragments/navigation.html :: bottomNavigation}">
+    </div>
+</footer>
 </html>

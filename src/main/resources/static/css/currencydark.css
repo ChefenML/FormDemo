@@ -1,0 +1,46 @@
+/* ============================================================
+   currency.css — page-specific. Requires theme.css first.
+   All rules scoped under .page-calc so they cannot leak.
+   ============================================================ */
+
+.page-calc .calc-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.page-calc .calc-form input[type="submit"] { margin-top: 14px; }
+
+/* result rows — replaces the old global `p` rule */
+.page-calc .result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+    padding: 12px 14px;
+    background: var(--surface-2);
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-size: 0.98rem;
+}
+
+.page-calc .result-row span {
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* hero result block */
+.page-calc .result-hero { text-align: center; }
+
+.page-calc .result-hero h3 { margin: 4px 0; }
+
+.page-calc .result-hero .highlight {
+    color: var(--accent);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.page-calc .snapshot {
+    text-align: center;
+}

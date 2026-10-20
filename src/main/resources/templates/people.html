@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title th:text="${something}"></title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
 </head>
 <body>
 <h1 th:text="${something}"></h1>
@@ -25,4 +26,8 @@
     </tbody>
 </table>
 </body>
+<footer>
+    <div th:replace="~{fragments/navigation.html :: bottomNavigation}">
+    </div>
+</footer>
 </html>
