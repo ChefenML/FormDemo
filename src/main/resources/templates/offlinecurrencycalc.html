@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Calc</title>
+    <link rel="stylesheet" th:href="@{/css/currency.css}">
+</head>
+
+<body>
+<!-- send form til whatever du @PostMapper, bare husk at @RequestParam("amount") <-skal have det rigtige navn på den ønskede input form -->
+<div class="range-box">
+<form action="#" th:action="@{/offlinecurrencycalc}" method="post">
+<label for="number">Indtast Veksel Beløb</label>
+<input type="number" id="number" name="amount" placeholder="100" step="any">
+
+    <label for="fromcurrency">From Currency:</label>
+    <select id="fromcurrency" name="fromcurrency">
+        <option value="DKK">DKK</option>
+        <option value="SEK">SEK</option>
+        <option value="NOK">NOK</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+    </select>
+
+    <label for="tocurrency">To Currency:</label>
+    <select id="tocurrency" name="tocurrency">
+            <option value="EUR">EUR</option>
+            <option value="SEK">SEK</option>
+            <option value="NOK">NOK</option>
+            <option value="USD">USD</option>
+            <option value="DKK">DKK</option>
+    </select>
+
+
+    <input type="submit" value="Exchange">
+</form>
+</div>
+<h6>***NOT LIVE*** Snapshot from 20-10-2026</h6>
+<div class="range-box" th:if="${result != null}">
+    <h3 th:text="${amount} + ' ' + ${fromcurrency}"></h3>
+    <h3 th:text="'is worth ' + ${#numbers.formatDecimal(result, 1, 3)} + ' ' + ${tocurrency}"></h3>
+</div>
+
+<div class="range-box" th:if="${amount != null}">
+
+    <h3>USD$ <span th:text="${amount}"></span></h3>
+
+    <!-- Formatering only, hvis udregning sker i java, det første tal sikrer at der ikke bare bliver skrevet .9 hvis taller er under 1. dvs 1 giver 0.9 og 0 giver .9: (minimum heltal(?!)) -->
+    <p>EUR: <span th:text="${#numbers.formatDecimal(eurResult, 1, 3)}"></span> €</p>
+    <p>DKK: <span th:text="${#numbers.formatDecimal(dkkResult, 1, 3)}"></span> kr.</p>
+    <p>NOK: <span th:text="${#numbers.formatDecimal(nokResult, 1, 3)}"></span> kr.</p>
+    <p>SEK: <span th:text="${#numbers.formatDecimal(sekResult, 1, 3)}"></span> kr.</p>
+
+
+
+    <!-- Udregning af 2 variabler:  -->
+     <p>EUR: <span th:text="${#numbers.formatDecimal(amount * rates.EUR, 1, 2)}"></span> €</p>
+</div>
+
+<div class="range-box" th:if="${errorMessage != null}">
+    <h3 th:text="${errorMessage}"></h3>
+    <h3 th:text="${errorMsgCatch}"></h3>
+</div>
+</body>
+</html>

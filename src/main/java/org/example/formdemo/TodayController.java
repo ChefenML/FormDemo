@@ -42,15 +42,7 @@ public class TodayController {
         msgRepo.save(messageModel);
         return "redirect:/socialpost";
     }
-//
-//    @PutMapping("/social")
-//    public String socialPut(@Valid @ModelAttribute("MessageModel") MessageModel messageModel,
-//                             BindingResult br, RedirectAttributes redirectAttributes) {
-//        redirectAttributes.addFlashAttribute("messageModel", messageModel);
-//
-//        msgRepo.save(messageModel);
-//        return "redirect:/socialpost";
-//    }
+
 
     @ModelAttribute("messageModel")
     public MessageModel messageModel() {
@@ -127,11 +119,6 @@ public class TodayController {
             double toCur = getFromCur(tocurrency, rates);
             double currencyRatio = toCur/fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
 
-//        System.out.println(amount + " from " + fromcurrency + " to " + tocurrency + " " + currencyRatio * amount);
-//        System.out.println(rates.getRates());
-//        System.out.println("fromcurrency: " + fromcurrency);
-//        System.out.println("tocurrency: " + tocurrency);
-//        System.out.println("currencyRatio: " + currencyRatio);
 
             // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
             model.addAttribute("amount", amount);
@@ -156,7 +143,7 @@ public class TodayController {
     }
 
     private double getFromCur(String currency, CurrencyRates rates) {
-        return switch(currency){
+        return switch (currency) {
             case "DKK" -> rates.getRates().getDKK();
             case "EUR" -> rates.getRates().getEUR();
             case "NOK" -> rates.getRates().getNOK();
@@ -164,6 +151,65 @@ public class TodayController {
             case "USD" -> rates.getRates().getUSD();
             default -> rates.getRates().getDKK();
         };
+    }
+
+
+    @GetMapping("/offlinecurrencycalc")
+    public String offlinecurrencycalc(Model model){
+        return "offlinecurrencycalc";
+    }
+
+    @PostMapping("/offlinecurrencycalc")
+    public String offlineCalculateCurrency(@RequestParam("amount") double amount,
+                                    @RequestParam("fromcurrency") String fromcurrency,
+                                    @RequestParam("tocurrency") String tocurrency,
+                                    Model model)
+    {
+
+        try {
+            //set up currency service
+            CurrencyService service = new CurrencyService();
+            CurrencyRates rates = service.getRates();
+
+            //use currency to/from
+            //Get rate from rate service, converting string to double
+            double fromCur = getFromCurOffline(fromcurrency, rates);
+            double toCur = getFromCurOffline(tocurrency, rates);
+            double currencyRatio = toCur/fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
+
+
+            // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
+            model.addAttribute("amount", amount);
+            model.addAttribute("rates", rates.getRates());
+            model.addAttribute("fromcurrency",fromcurrency);
+            model.addAttribute("tocurrency",tocurrency);
+            model.addAttribute("result",currencyRatio * amount);
+
+            // Beregn værdi før html eller efter ^^?
+            model.addAttribute("eurResult", amount * rates.getRates().getEUR());
+            model.addAttribute("dkkResult", amount * rates.getRates().getDKK());
+            model.addAttribute("nokResult", amount * rates.getRates().getNOK());
+            model.addAttribute("sekResult", amount * rates.getRates().getSEK());
+
+            return "offlinecurrencycalc";
+
+        } catch (IOException e) {
+            model.addAttribute("errorMessage", "Could not fetch exchange rates");
+            model.addAttribute("errorMsgCatch", e);
+            return "offlinecurrencycalc";
+        }
+    }
+
+    //offline fixed values
+        private double getFromCurOffline(String currency, CurrencyRates rates) {
+            return switch(currency){
+                case "DKK" -> 6.65620446;
+                case "EUR" -> 0.8905159;
+                case "NOK" -> 9.38609099;
+                case "SEK" -> 9.88891631;
+                case "USD" -> 1;
+                default -> 6.65620446;
+            };
 
     }
 
