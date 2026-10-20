@@ -163,45 +163,42 @@ public class TodayController {
     public String offlineCalculateCurrency(@RequestParam("amount") double amount,
                                     @RequestParam("fromcurrency") String fromcurrency,
                                     @RequestParam("tocurrency") String tocurrency,
-                                    Model model)
-    {
-
-        try {
+                                    Model model) {
             //set up currency service
-            CurrencyService service = new CurrencyService();
-            CurrencyRates rates = service.getRates();
+            //CurrencyService service = new CurrencyService();
+            //CurrencyRates rates = service.getRates();
 
+            double DKK = 6.65620446;
+            double EUR = 0.8905159;
+            double NOK = 9.38609099;
+            double SEK = 9.88891631;
+            double USD = 1;
             //use currency to/from
             //Get rate from rate service, converting string to double
-            double fromCur = getFromCurOffline(fromcurrency, rates);
-            double toCur = getFromCurOffline(tocurrency, rates);
-            double currencyRatio = toCur/fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
+            double fromCur = getFromCurOffline(fromcurrency);
+            double toCur = getFromCurOffline(tocurrency);
+            double currencyRatio = toCur / fromCur; //what is diff in fromcurrency to currency, becoz only having USD conversion available
 
 
             // Gemmer input fra @reqparam amount i (key:value) (amount:amount) (var:double)
             model.addAttribute("amount", amount);
-            model.addAttribute("rates", rates.getRates());
-            model.addAttribute("fromcurrency",fromcurrency);
-            model.addAttribute("tocurrency",tocurrency);
-            model.addAttribute("result",currencyRatio * amount);
+//            model.addAttribute("rates", rates.getRates());
+            model.addAttribute("fromcurrency", fromcurrency);
+            model.addAttribute("tocurrency", tocurrency);
+            model.addAttribute("result", currencyRatio * amount);
 
             // Beregn værdi før html eller efter ^^?
-            model.addAttribute("eurResult", amount * rates.getRates().getEUR());
-            model.addAttribute("dkkResult", amount * rates.getRates().getDKK());
-            model.addAttribute("nokResult", amount * rates.getRates().getNOK());
-            model.addAttribute("sekResult", amount * rates.getRates().getSEK());
+            model.addAttribute("eurResult", amount * getFromCurOffline("EUR"));
+            model.addAttribute("dkkResult", amount * DKK);
+            model.addAttribute("nokResult", amount * NOK);
+            model.addAttribute("sekResult", amount * SEK);
 
-            return "offlinecurrencycalc";
-
-        } catch (IOException e) {
-            model.addAttribute("errorMessage", "Could not fetch exchange rates");
-            model.addAttribute("errorMsgCatch", e);
             return "offlinecurrencycalc";
         }
-    }
+
 
     //offline fixed values
-        private double getFromCurOffline(String currency, CurrencyRates rates) {
+        private double getFromCurOffline(String currency) {
             return switch(currency){
                 case "DKK" -> 6.65620446;
                 case "EUR" -> 0.8905159;

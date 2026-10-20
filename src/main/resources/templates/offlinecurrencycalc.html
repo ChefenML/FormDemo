@@ -53,8 +53,8 @@
 
 
 
-    <!-- Udregning af 2 variabler:  -->
-     <p>EUR: <span th:text="${#numbers.formatDecimal(amount * rates.EUR, 1, 2)}"></span> €</p>
+    <!-- Udregning af 2 variabler:  hardcoded euro værdig-->
+     <p>EUR: <span th:text="${#numbers.formatDecimal(amount * 0.8905159, 1, 2)}"></span> €</p>
 </div>
 
 <div class="range-box" th:if="${errorMessage != null}">
