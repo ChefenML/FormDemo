@@ -5,11 +5,21 @@ public class Person {
 
     //@Size(min=2, max=20)
     private String name;
-    private int age;
+    private int id;
+    private String email;
+    private String timestamp;
 
-    public Person(String name, int age) {
+    public Person(){}
+
+    public Person(String name, int id) {
         this.name = name;
-        this.age = age;
+        this.id = id;
+    }
+
+    public Person(int id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
 
     public String getName() {
@@ -20,11 +30,27 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
-        return this.age;
+    public int getId() {
+        return id;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

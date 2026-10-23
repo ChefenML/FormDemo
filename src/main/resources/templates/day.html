@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <title th:text="${day}"></title>
     <link rel="stylesheet" th:href="@{/css/theme.css}">
+    <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
 </head>
 
 <body>
-
+<div th:replace="~{fragments/navigation.html :: topNavigation(~{ :: .currentlocation})}">
+    <div class="currentlocation">
+        Day
+    </div>
+</div>
+<div class="range-box">
 <H1>Today is:</H1>
 <h1 th:text="${day}"></h1>
 <div th:switch="${day}">
@@ -30,5 +36,10 @@
 <div th:case="'SUNDAY'">Det er Søndag og garfield er bobbob</div>
 <!--    <p th:case="*">ukendt dag?!</p>-->
 </div>
+</div>
 </body>
+<footer>
+    <div th:replace="~{fragments/navigation.html :: bottomNavigation}">
+    </div>
+</footer>
 </html>

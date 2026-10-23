@@ -7,11 +7,11 @@
     <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
 </head>
 <body class="page-viewall">
-<!--private String name;-->
-<!--private String message;-->
-<!--private String privpub;-->
-<!--private LocalDate date;-->
-
+<div th:replace="~{fragments/navigation.html :: topNavigation(~{ :: .currentlocation})}">
+    <div class="currentlocation">
+        ViewAll
+    </div>
+</div>
 <div th:each="msgRepo: ${msgRepo}" class="range-box">
 
     <h1 th:text="${msgRepo.name} + ' #' + ${msgRepo.id}"></h1>
@@ -35,7 +35,6 @@
 
 
 </div>
-<a th:href="@{/social}"> <button>New Shit</button></a>
 </body>
 <footer>
     <div th:replace="~{fragments/navigation.html :: bottomNavigation}">

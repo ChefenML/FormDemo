@@ -7,9 +7,16 @@
     <title>Title</title>
 </head>
 <body>
+<div th:replace="~{fragments/navigation.html :: topNavigation(~{ :: .currentlocation})}">
+    <div class="currentlocation">
+        Random
+    </div>
+</div>
+<div class="range-box" th:text="${random}">
 <h1>random text1</h1>
 <h2>random text2</h2>
 <h3>random text3</h3>
+</div>
 <div class="range-box" th:text="${random}"></div>
 <div class="card">
     <p>this is in card class</p>

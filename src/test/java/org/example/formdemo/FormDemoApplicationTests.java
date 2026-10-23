@@ -28,4 +28,6 @@ class FormDemoApplicationTests {
                 andExpect(view().name("social"));
     }
 
+
+
 }

@@ -7,16 +7,20 @@
     <link rel="stylesheet" th:href="@{/css/nav.css}" type="text/css"/>
 </head>
 <body class="page-socialpost">
+<div th:replace="~{fragments/navigation.html :: topNavigation(~{ :: .currentlocation})}">
+    <div class="currentlocation">
+        SocialPost
+    </div>
+</div>
+
 <div class="range-box">
-<p>Username:</p>
-    <p th:text="${messageModel?.name ?: '(empty)'}"></p>
-<p>Posted:</p>
-    <p th:text="${messageModel?.message ?: '(empty)'}">(empty)</p>
-<p>Private/public:</p>
-    <p th:text="${messageModel?.privpub}"></p>
-    <p>Date:</p>
-    <p th:text="${messageModel?.date}"></p>
+    <p><strong>Username:</strong> <span th:text="${messageModel?.name ?: '(empty)'}">>500</span></p>
+    <p><strong>Posted:</strong> <span th:text="${messageModel?.message ?: '(empty)'}">>500</span></p>
+    <p><strong>Private/public:</strong> <span th:text="${messageModel?.privpub}">>500</span></p>
+    <p><strong>Date:</strong> <span th:text="${messageModel?.date}">>500</span></p>
+
     <a th:href="@{/social}"> <button> New Post</button></a>
+
     <a th:href="@{/viewall}"> <button> View All</button></a>
 </div>
 </body>

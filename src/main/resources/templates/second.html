@@ -8,15 +8,17 @@
 </head>
 
 <body>
-
+<div th:replace="~{fragments/navigation.html :: topNavigation(~{ :: .currentlocation})}">
+    <div class="currentlocation">
+        Second
+    </div>
+</div>
+<div class="range-box">
 <H1>Second right now:</H1>
 <p th:text="${second}"></p>
 
-
 <p>Test range 0-59s:</p>
 <p>Using range conditions:</p>
-
-<div class="range-box">
     <p th:if="${second >= 0 && second < 10}">
         0-9 range
     </p>

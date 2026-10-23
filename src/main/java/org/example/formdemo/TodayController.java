@@ -3,10 +3,12 @@ package org.example.formdemo;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.validation.Valid;
 import org.example.formdemo.api.CurrencyRates;
 import org.example.formdemo.api.CurrencyService;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,9 +18,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class TodayController {
     msgRepo msgRepo;
+    private final JdbcTemplate jdbcTemplate;
+    private final MessageModelRowMapper rowMapper;
 
-    public TodayController(msgRepo msgRepo) {
+
+    public TodayController(msgRepo msgRepo, JdbcTemplate jdbcTemplate, MessageModelRowMapper rowMapper) {
         this.msgRepo = msgRepo;
+        this.jdbcTemplate = jdbcTemplate;
+        this.rowMapper = rowMapper;
     }
 
     @GetMapping({"/social"})
@@ -82,10 +89,10 @@ public class TodayController {
         return "redirect:/messages/" + message.getPrivpub();
     }
 
-    @GetMapping("/messages/{filter}")
-    public String filterMessages(@PathVariable String filter, RedirectAttributes redirectAttributes) {
+    @GetMapping("/viewall/{filter}")
+    public String filterMessages(@PathVariable String filter, RedirectAttributes redirectAttributes, Model model) {
         redirectAttributes.addFlashAttribute("msgRepo", msgRepo.filterList(filter));
-
+        model.addAttribute("filter",filter);
         return "redirect:/viewall-filter";
     }
 
@@ -208,6 +215,13 @@ public class TodayController {
                 default -> 6.65620446;
             };
 
+    }
+
+    @GetMapping("/test")
+    public String sqltest(Model model){
+        List<Person> person = jdbcTemplate.query("SELECT * FROM USER", rowMapper);
+        model.addAttribute("person",person);
+        return "sqltest";
     }
 
 }
