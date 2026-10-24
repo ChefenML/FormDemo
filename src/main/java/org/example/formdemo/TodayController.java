@@ -217,9 +217,9 @@ public class TodayController {
 
     }
 
-    @GetMapping("/test")
+    @GetMapping("/sqltest")
     public String sqltest(Model model){
-        List<Person> person = jdbcTemplate.query("SELECT * FROM USER", rowMapper);
+        List<Person> person = jdbcTemplate.query("SELECT (name, user_id) FROM USER", rowMapper);
         model.addAttribute("person",person);
         return "sqltest";
     }
