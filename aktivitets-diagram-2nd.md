@@ -1,3 +1,5 @@
+## Aktivitets Diagram
+
 ```mermaid
 flowchart TD
     Start([Start]) --> OpretProjekt[Projektleder opretter projekt]
