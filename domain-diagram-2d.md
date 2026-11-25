@@ -2,6 +2,7 @@
 
 ```mermaid
 classDiagram
+direction LR
     class Projektleder {
         +id
         +navn
